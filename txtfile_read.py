@@ -10,5 +10,3 @@ def readPuzzle(file):
            else:
                continue 
     return(puzzle)
-
-print(readPuzzle("puzzle.txt"))
