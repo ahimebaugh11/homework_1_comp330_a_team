@@ -1,0 +1,23 @@
+HEADER
+Name1
+Name2
+Name3
+
+SECTION1
+Item1
+Item2
+Item3
+
+SECTION2
+Item4
+Item5
+Item6
+
+SECTION3
+Item7
+Item8
+Item9 
+
+CLUES
+Name1, AND Item1, AND Item2
+Name3, NOT Item7, NOT Item4
