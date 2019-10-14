@@ -2,7 +2,6 @@
 
 class header_obj:
     def __init__(self, title):
-        print("New Header "+title)
         self.title = title
         self.connected = []
         self.restricted = []
@@ -20,7 +19,6 @@ class header_obj:
 
 class item_obj1:
     def __init__(self, title):
-        print("New Item "+title)
         self.title = title
         self.connected = []
         self.restricted = []
@@ -37,7 +35,6 @@ class item_obj1:
 
 class item_obj2:
     def __init__(self, title):
-        print("New Item "+title)
         self.title = title
         self.connected = []
         self.restricted = []
@@ -54,7 +51,6 @@ class item_obj2:
 
 class item_obj3:
     def __init__(self, title):
-        print("New Item "+title)
         self.title = title
         self.connected = []
         self.restricted = []
@@ -211,41 +207,49 @@ class puzzle_solver:
 
                 
     def puzzle_solve(self, headers, items1, items2, items3): 
+        print("Solving Puzzle")
+        #starts with full list of each item
         
-        while(len(items1) > 0 and len(items2) > 0 and len(items3) > 0):     
-            for x in headers:
-                temp_items1 = items1
-                temp_items2 = items2
-                temp_items3 = items3  
-                print("=========================================")
-                print(x.title+": ")
-                for y in x.restricted:
-                    if(y.__class__.__name__ == "item_obj1" and y in temp_items1):
-                        temp_items1.remove(y)
-                    elif(y.__class__.__name__ == "item_obj2"and y in temp_items2):
-                        temp_items2.remove(y)
-                    elif(y.__class__.__name__ == "item_obj3"and y in temp_items3):
-                        temp_items3.remove(y)
-                if len(temp_items1) == 1:
-                    items1.remove(temp_items1[0])
-                    print("item 1: ")
-                    print(temp_items1[0])
-                elif len(temp_items2) == 1:
-                    items2.remove(temp_items2[0])
-                    print("item 2: ")
-                    print(temp_items2[0])
-                elif len(temp_items3) == 1:
-                    items3.remove(temp_items3[0])
-                    print("item 3: ")
-                    print(temp_items3[0])
-
-                
-                
-                
-                
+        count = 0
+        while(count < 5):     
             
+            count += 1
 
-    
+            for h in headers:
+                all_objs = items1+items2+items3
+                 
+                for y in h.connected:
+                    if(y.__class__.__name__ == "item_obj1" and y in items1):
+                        items1.remove(y)
+                            
+                    elif(y.__class__.__name__ == "item_obj2"and y in items2):
+                        items2.remove(y)
+                        
+                    elif(y.__class__.__name__ == "item_obj3"and y in items3):
+                        items3.remove(y)
+
+                for y in all_objs:
+                    if(h not in y.restricted and y not in h.restricted):
+                        if y in items1:
+                            h.add_connected(y)
+                            items1.remove(y)
+                        elif y in items2:
+                            h.add_connected(y)
+                            items2.remove(y)
+                        elif y in items3:
+                            h.add_connected(y)
+                            items3.remove(y)
+           
+
+        for x in headers:
+            print("==================================================")
+            print("Header:" + x.title)
+            for z in x.connected:
+                print(z.title)
+
+
+
+
 
 
 
@@ -255,25 +259,29 @@ class puzzle_solver:
         
         headers, items1, items2, items3, clues = self.puzzle_reader(puzzle)
 
+        print("Creating Items")
         headers, items1, items2, items3 = self.item_creator(headers, items1, items2, items3)
         
+        print("Processing Clues")
         for x in clues:
             self.clue_process(x, headers, items1, items2, items3)
 
-        self.puzzle_solve(headers, items1, items2, items3)
         all_objs  = headers+items1+items2+items3
-        '''for x in all_objs:
-            print(x.title)
-            print("Connected:")
+        
+        print("===============DISPLAYING CONNECTIONS/RESTRICTIONS================")
+        for x in all_objs:
+            print(x.title+":")
+            print("Connected: ")
             for y in x.connected:
                 print(y.title)
-            print("Restricted:")
+            print("Restricted: ")
             for y in x.restricted:
                 print(y.title)
-            print("Possible:")
-            for y in x.possible:
-                print(y.title)
-            print("=================================================")'''
+            
+            print("===============================")
+        print("====================SOLVING PUZZLE======================")
+        self.puzzle_solve(headers, items1, items2, items3)
+        
 
 
 
