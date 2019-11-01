@@ -1,23 +1,48 @@
 HEADER
-Name1
-Name2
-Name3
+Paula
+Pat
+Pam
+Penny
+Peggy
 
 SECTION1
-Item1
-Item2
-Item3
+Lipstick
+Compact
+Comb
+File
+Keyring
 
 SECTION2
-Item4
-Item5
-Item6
+Jones
+Smith
+Johnson
+Doe
+Dixon
 
 SECTION3
-Item7
-Item8
-Item9 
+Doctor
+Lawyer
+Teacher
+Judge
+Pilot
 
 CLUES
-Name1, AND Item1, AND Item2
-Name3, NOT Item7, NOT Item4
+Pilot, AND Johnson, AND File
+Teacher, AND Comb
+Dixon, AND Lipstick
+Paula, NOT Doctor, NOT Comb
+Penny, NOT Doctor, NOT Comb
+Peggy, NOT Doctor, NOT Comb
+Pam, NOT File, NOT Keyring
+Paula, NOT Smith, NOT Doe
+Paula, AND Compact
+Penny, NOT Lawyer, NOT Judge
+Peggy, NOT Teacher
+Peggy, AND Doe
+Pam, AND Dixon
+Jones, NOT Judge
+Doe, NOT Doctor
+Peggy, NOT Lipstick
+Pat, NOT Lipstick
+
+
